@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
 import log from '@/utils/logger';
+import { createUser } from '@/services/user.service';
 
-export function createsUserHandler(req: Request, res: Response) {
+export async function createUserHandler(req: Request, res: Response) {
     try {
-        // 
+        const user = await createUser(req.body);
+        return user;
     }
     catch (error) {
         log.info(error);
